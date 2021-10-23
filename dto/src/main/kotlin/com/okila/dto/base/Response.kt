@@ -1,4 +1,4 @@
-package com.okila.common.entities
+package com.okila.dto.base
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

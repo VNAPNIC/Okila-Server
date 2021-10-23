@@ -5,7 +5,7 @@ import com.netflix.zuul.ZuulFilter
 import com.netflix.zuul.context.RequestContext
 import com.netflix.zuul.exception.ZuulException
 import com.okila.common.service.JWTService
-import com.okila.common.entities.Response
+import com.okila.dto.base.Response
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.MalformedJwtException
 import io.jsonwebtoken.SignatureException

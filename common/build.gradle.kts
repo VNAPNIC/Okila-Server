@@ -1,5 +1,6 @@
 dependencies {
     api(project(":repository"))
+    api(project(":dto"))
     api("org.springframework.cloud:spring-cloud-starter-netflix-zuul")
     api("com.fasterxml.jackson.datatype:jackson-datatype-joda:2.8.5")
     api("io.springfox:springfox-swagger2:2.9.2")
