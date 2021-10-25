@@ -63,6 +63,14 @@ subprojects {
         enabled = true
     }
 
+    tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+        enabled = false
+    }
+
+    tasks.getByName<Jar>("jar") {
+        enabled = true
+    }
+
     dependencies {
         "api"(kotlin("stdlib-jdk8"))
         "api"(kotlin("reflect"))

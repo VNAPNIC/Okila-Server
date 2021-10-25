@@ -17,25 +17,22 @@ open class BaseRedisConfig : CachingConfigurerSupport() {
 
     @Bean
     open fun redisTemplate(factory: RedisConnectionFactory): RedisTemplate<String, Any> {
-        val template = RedisTemplate<String, Any>()
-        template.connectionFactory = factory
-
+        val stringRedisSerializer = StringRedisSerializer()
         val serializer = Jackson2JsonRedisSerializer(Any::class.java)
         val objectMapper = ObjectMapper()
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY)
         objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL)
         serializer.setObjectMapper(objectMapper)
-
-        val stringRedisSerializer = StringRedisSerializer()
-        template.keySerializer = stringRedisSerializer
-        template.hashKeySerializer = stringRedisSerializer
-        template.valueSerializer = serializer
-        template.hashValueSerializer = serializer
-        template.afterPropertiesSet()
-
-        return template
+        return RedisTemplate<String, Any>().apply {
+            this.setConnectionFactory(factory)
+            this.keySerializer = stringRedisSerializer
+            this.hashKeySerializer = stringRedisSerializer
+            this.valueSerializer = serializer
+            this.hashValueSerializer = serializer
+            this.afterPropertiesSet()
+        }
     }
 
     @Bean
-    open fun redisService(redisTemplate: RedisTemplate<String, Any>) : RedisService = RedisServiceImpl(redisTemplate)
+    open fun redisService(redisTemplate: RedisTemplate<String, Any>): RedisService = RedisServiceImpl(redisTemplate)
 }

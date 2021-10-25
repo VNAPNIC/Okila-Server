@@ -9,7 +9,3 @@ object JWT {
     const val REDIS_JWT_DEVICE_ID = "jwt:device"
     const val REDIS_JWT_ACCOUNT_ID = "jwt:account"
 }
-
-object WSSession {
-    const val SESSION = "session"
-}
